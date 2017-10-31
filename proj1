@@ -1,0 +1,4 @@
+#/bin/bash
+
+python r-robots.py < $1 -t 3
+./lingeling < problem.cnf >solution.cnf 
