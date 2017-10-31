@@ -1,5 +1,4 @@
 import argparse
-import pycosat
 import sys
 import itertools
 
@@ -8,9 +7,8 @@ import itertools
 
 n_aux = 0 
 
-def description_to_cnf(file_des,file_cnf,t):
+def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 	global n_aux
-
 	def xy_to_v(x,y): 
 		'''
 		gives the vertice correpondent to (x,y)
@@ -208,18 +206,8 @@ def description_to_cnf(file_des,file_cnf,t):
 		n = n_pos + n_map + n_poss + n_mov + n_aux + 1
 		n_aux += 1
 		return n
-		
-	def list_to_clause(list1):
-		s = ["0\n"]
-		for l in list1:
-			new_s = []
-			for w in l:
-				for s1 in s:
-					new_s += [str(w)+" "+s1]
-			s = new_s
-		return s
 
-	lines = file_des.readlines()
+	lines = file_rr.readlines()
 	l = lines[0].strip()
 
 	n_max = int(l.split()[0])	#n
@@ -237,7 +225,7 @@ def description_to_cnf(file_des,file_cnf,t):
 	n_clauses = 0
 
 	#initial positions__________________________
-	for i in range(0,4):
+	for i in range(0,k_max):
 		l = lines[i+1].strip()
 		color = l.split()[0][0]
 		x = int(l.split()[1])
@@ -257,16 +245,17 @@ def description_to_cnf(file_des,file_cnf,t):
 	walls = []
 	for l in lines[7:]:
 		l = l.strip()
-		x1 = int(l.split()[0])
-		y1 = int(l.split()[1])
-		d = l.split()[2][0]
-		x2,y2 = xyd_to_xy(x1,y1,d)
-		v1 = xy_to_v(x1,y1)
-		v2 = xy_to_v(x2,y2)
-		if(v2 != -1):
-			if(v2 < v1):
-				v1, v2 = v2, v1
-			walls += [(v1,v2)]
+		if (l != ""):
+			x1 = int(l.split()[0])
+			y1 = int(l.split()[1])
+			d = l.split()[2][0]
+			x2,y2 = xyd_to_xy(x1,y1,d)
+			v1 = xy_to_v(x1,y1)
+			v2 = xy_to_v(x2,y2)
+			if(v2 != -1):
+				if(v2 < v1):
+					v1, v2 = v2, v1
+				walls += [(v1,v2)]
 
 	edges = []
 	for v in range(0,v_max):
@@ -280,7 +269,7 @@ def description_to_cnf(file_des,file_cnf,t):
 				v3 = vd_to_v(v2,d)
 
 	#________________________________________
-	print("1. Positions: each robot have to have one position per time step")
+	file_err.write("\trr_to_cnf: 1. Positions: each robot have to have one position per time step\n")
 	#positions
 	#each robot have to have one position per time step 
 	for t in range(0,t_max+1):
@@ -291,7 +280,7 @@ def description_to_cnf(file_des,file_cnf,t):
 			clauses += "0\n"
 			n_clauses +=1
 
-	print("2. Positions: each robot can only be at most at one position at each time step")
+	file_err.write("\trr_to_cnf:2. Positions: each robot can only be at most at one position at each time step\n")
 	#each robot can only be at most at one position at each time step 
 	for t in range(0,t_max+1):
 		for k in ['R','G','Y','B']:
@@ -300,7 +289,7 @@ def description_to_cnf(file_des,file_cnf,t):
 					clauses += str(-pos_v_to_prop(k,v1,t))+" "+str(-pos_v_to_prop(k,v2,t))+" 0\n"
 					n_clauses +=1
 
-	print("3. Possible: possible moves must not have robots in the middle")
+	file_err.write("\trr_to_cnf:3. Possible: possible moves must not have robots in the middle\n")
 	#possible moves must not have robots in the middle
 	for t in range(1,t_max):		
 		for e in edges:
@@ -321,7 +310,7 @@ def description_to_cnf(file_des,file_cnf,t):
 					clauses += str(-possible_to_prop(x1,y1,x2,y2,t))+" "+str(-pos_xy_to_prop(k,v[0],v[1],t)) +" 0\n"
 					n_clauses += 1
 
-	print("4. Possible: need to have a robot at the end")
+	file_err.write("\trr_to_cnf:4. Possible: need to have a robot at the end\n")
 	#possible moves need to have a robot at the end
 	for t in range(1,t_max):		
 		for e in edges:
@@ -354,7 +343,7 @@ def description_to_cnf(file_des,file_cnf,t):
 					clauses += s  	
 					n_clauses += 1
 
-	print("5. Moves: each time step at most one robot can move")
+	file_err.write("\trr_to_cnf:5. Moves: each time step at most one robot can move")
 	#at each time step at most one robot can move 
 	for t in range(0,t_max):
 		for k1 in ['R','G','Y','B']:
@@ -365,7 +354,7 @@ def description_to_cnf(file_des,file_cnf,t):
 							clauses += str(-move_to_prop(k1,d1,t))+" "+str(-move_to_prop(k2,d2,t))+" 0\n"
 							n_clauses +=1
 
-	print("6. Moves: for each time step each robot or stay or move")
+	file_err.write("\trr_to_cnf:6. Moves: for each time step each robot or stay or move")
 	#for each time step each robot or stay or move
 	for k in ['R','B','G','Y']:
 		for t in range(1,t_max+1):
@@ -389,7 +378,7 @@ def description_to_cnf(file_des,file_cnf,t):
 					aux = aux_to_prop()
 					aux_s += [aux]
 					for j in i:
-						clauses += str(-j)+" "+str(-aux)+" 0\n" 
+						clauses += str(j)+" "+str(-aux)+" 0\n" 
 						n_clauses += 1
 
 				s = str(-pos_xy_to_prop(k,x2,y2,t))+" "+str(pos_xy_to_prop(k,x2,y2,t-1))+" "
@@ -398,104 +387,35 @@ def description_to_cnf(file_des,file_cnf,t):
 				
 				clauses += s + " 0\n"
 				n_clauses += 1
-			
-	'''#at each time at least one robot need to move 
-	for t in range(0,t_max):
-		for k1 in ['R','G','Y','B']:
-			for d1 in ['U','D','R','L']:
-				clauses += str(move_to_prop(k1,d1,t))+" "
-		clauses += "0\n"
-		n_clauses +=1
-
-	#two different robots may be in different positions
-	for t in range(0,t_max+1):
-		for k in ['R','G','Y','B']:
-			for v1 in range(0,v_max):
-				for v2 in range(v1+1,v_max):
-					clauses += str(-pos_v_to_prop(k,v1,t))+" "+str(-pos_v_to_prop(k,v2,t))+" 0\n"
-					n_clauses +=1
-	'''
-					
+	
 	n_var = n_pos + n_map + n_mov + n_poss + n_aux	#number of total propositions
-	clauses = "p cnf "+str(n_var)+" "+str(n_clauses)+"\n" + clauses
+	#VARS TO AUX
+	vars_s = "t "+str(t_max)+"\n"
+	vars_s += "n "+str(n_max)+"\n"
+	vars_s += "v "+str(v_max)+"\n"
+	vars_s += "k "+str(k_max)+"\n"
+	vars_s += "d "+str(d_max)+"\n"
+	vars_s += "V "+str(n_var)+"\n"
+	file_aux.write(vars_s)
 
-	file_cnf.write(clauses)
-
-	'''	
-	print("n_var: " + str(n_var))
-	print("n_pos: " + str(n_pos))
-	print("n_goal: " + str(n_goal))
-	print("n_map: " + str(n_map))
-	print("n_poss: " + str(n_poss))
-	print("n_mov: " + str(n_mov))
-
-	print("xy_to_v")
-	print(xy_to_v(1,1))
-	print(xy_to_v(1,2))
-	print(xy_to_v(n_max,n_max-1))
-	print(xy_to_v(n_max,n_max))
-
-	print("pos_xy_to_prop")
-	print(pos_xy_to_prop('R',1,1,0))
-	print(pos_xy_to_prop('B',n_max,n_max,t_max))
-	print("pos_v_to_prop")
-	print(pos_v_to_prop('R',0,0))
-	print(pos_v_to_prop('B',n_max*n_max-1,t_max))
-	print("goal_to_prop")
-	print(goal_to_prop('R',1,1))
-	print(goal_to_prop('B',n_max,n_max))
-	print("link_to_prop")
-	print(link_to_prop(n_max,n_max,n_max,n_max-1) - (n_pos + n_goal +1))
-	print(link_to_prop(1,2,1,1) - (n_pos + n_goal +1))
-	print("possible_to_prop")
-	print(possible_to_prop(0,0,0,0,0))
-	print(possible_to_prop(1,1,1,1,t_max-1))
-	print("move_to_prop")
-	print(move_to_prop('R','U',0))
-	print(move_to_prop('B','L',t_max-1))
-	'''
-
-def file_to_clauses(f):
-	c = []
-	for l in f.readlines():
-		l = l.strip()
-		if (not l[0] == 'p') and (l[:-1]!="") and (not l[0] == 'c'):
-			nclause = map(int, l.split()[:-1])
-			c += [list(nclause)]
-	return c
-
-#dois robots não podem estar no mesma posição
-
-#
-
+	clauses_s = "p cnf "+str(n_var)+" "+str(n_clauses)+"\n" + clauses
+	file_cnf.write(clauses_s)
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description='ricochet robots')
+	parser = argparse.ArgumentParser(description='ricochet robots to cnf')
 	parser.add_argument('-t', nargs='?', type=int, help='the number of steps', default = 1) 
-	parser.add_argument('-v', nargs='?', type=int, default=0, help='the visualization mode\n\t 0 - just number of solutions \n\t 1 - cnf solutions \n\t 2 - board vizualization')
-	parser.add_argument('-f', nargs='+', type=str, default="", help='file of description of the problem') 
 	args = parser.parse_args()
 
 	t_max = args.t
+	
+	f_err = sys.stderr
+	f_rr = sys.stdin
+	f_cnf = open("problem-"+ str(t_max) +".cnf", 'w')
+	f_aux = open("vars-"+ str(t_max) +".aux", 'w')
+	
+	f_err.write("RR_TO_CNF\n")
+	rr_to_cnf(f_rr,f_cnf,f_aux,f_err,t_max)
 
-	if args.f != "":
-		f_des = open(args.f, 'r')
-	else:
-		f_des = sys.stdin
-	f_pro = open("problem.txt", 'w')
-	description_to_cnf(f_des,f_pro,t_max)
-
-	f_pro = open("problem.txt", 'r')
-	problem = file_to_clauses(f_pro)
-
-	#solutions = [pycosat.solve(problem)]
-
-	#print(solutions)
-
-
-	# um robot por posição
-	# um movimento por time step
-	# um objetivo por jogo
-	# 
-
+	f_cnf.close()
+	f_aux.close()
 	

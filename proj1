@@ -1,4 +1,17 @@
 #/bin/bash
 
-python r-robots.py < $1 -t 3
-./lingeling < problem.cnf >solution.cnf 
+problem="problem.rr"
+time=1
+
+if [ ! -z $1 ]; then
+	problem=$1
+fi
+
+if [ ! -z $2 ]; then
+	time=$2
+fi
+
+python rr-to-cnf.py < $1 -t $2
+./lingeling < "problem-$2.cnf" > "solution-$2.cnf"
+python cnf-to-sol.py > $(basename "$1" .rr).sol -t $2
+#rm *.cnf *.aux

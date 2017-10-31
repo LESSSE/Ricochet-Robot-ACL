@@ -1,0 +1,48 @@
+c Lingeling SAT Solver
+c 
+c Version bbc 923038088b727dcc8bd03aa8dfb5013bd03bf8c4
+c 
+c Copyright (C) 2010-2016 Armin Biere JKU Linz Austria.
+c All rights reserved.
+c 
+c released Thu Jul  7 10:21:35 CEST 2016
+c compiled Wed Oct 25 12:56:16 WEST 2017
+c 
+c gcc (Debian 6.3.0-18) 6.3.0 20170516
+c -Wall -O3 -DNLGLOG -DNDEBUG -DNCHKSOL -DNLGLDRUPLIG -DNLGLYALSAT
+c -DNLGLFILES -DNLGLDEMA
+c Linux sigma03.ist.utl.pt 4.9.0-3-amd64 x86_64
+c 
+c reading input file <stdin>
+c no embedded options
+c found 'p cnf 79072 470959' header
+c read 79072 variables, 470959 clauses, 1022739 literals in 0.00 seconds
+c 
+c  seconds         irredundant            redundant clauses   glue   iterations"      MB    stability
+c          variables clauses conflicts  large ternary binary     jlevel       jlevel'  agility     tlevel
+c 
+c  S    0.0   54506   445545         0       0      0     0    0     0      0     0   15  69     0      0
+c  P    1.0   27216   181592         0       0      0     0    0     0      0     0   14  69     0      0
+c  P    2.0   27182   175786         0       0      0     0    0     0      0     0   16  69     0      0
+c 
+c  seconds         irredundant            redundant clauses   glue   iterations"      MB    stability
+c          variables clauses conflicts  large ternary binary     jlevel       jlevel'  agility     tlevel
+c 
+s UNSATISFIABLE
+c
+c    2.148  98% simplifying
+c    0.040   2% search
+c ==================================
+c    2.192 100% all
+c 
+c           155 conflicts,          70.7 confs/sec
+c            16 ternaries,           9.7 confs/ternary
+c            15 binaries,           10.3 confs/binary
+c             9 iterations,         17.2 confs/iteration
+c 
+c             0 reductions,          0.0 redus/sec,      0.0 confs/reduction
+c             0 restarts,            0.0 rests/sec,      0.0 confs/restart
+c          2482 decisions,        1132.3 decis/sec,     16.0 decis/conflict
+c        235795 propagations,   107570.7 props/sec,     95.0 props/decision
+c 
+c 2.2 seconds, 22.6 MB
