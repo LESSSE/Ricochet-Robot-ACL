@@ -11,7 +11,7 @@ def calc(vars):
 	global n_mov
 	global n_aux
 
-	file_aux = open(vars, 'r')
+	file_aux = open("vars-"+str(vars)+".aux", 'r')
 	lines = file_aux.readlines()
 
 	for l in lines:
@@ -265,12 +265,12 @@ def d_to_direction(d):
 
 def prop_to_move(prop):
 	if (prop >= n_pos + n_map + n_poss + 1) and (prop <= n_pos + n_map + n_poss + n_mov + 1): 
-		prop -= n_pos + n_map + n_poss - 1
+		prop -= n_pos + n_map + n_poss + 1
 		time = prop // (k_max * d_max)
 		robot = k_to_color((prop // d_max) % k_max)
 		direction = d_to_direction(prop % d_max)
 		# t * k_max * d_max + color_to_k(color) * d_max + direction_to_d(direction)
-		return   ("MOVE: t: "+str(time)+" k: "+str(robot)+"d: "+str(direction)+"\n")
+		return   ("MOVE: t: "+str(time)+" k: "+str(robot)+" d: "+str(direction)+"\n")
 	else:
 		return 	 -1
 def prop_to_pos(prop):
@@ -279,7 +279,7 @@ def prop_to_pos(prop):
 		time = prop // (k_max * v_max)
 		robot = k_to_color((prop // v_max) % k_max)
 		v = prop % v_max
-		return   ("POSITION: t: "+str(time)+" k: "+str(robot)+" x: "+str(v_to_x(v))+" y: "+str(v_to_y(v))+"\n")
+		return   ("POSITION: t: "+str(time)+" k: "+str(robot)+" (x,y): ("+str(v_to_x(v))+","+str(v_to_y(v))+")\n")
 	else:
 		return 	 -1
 
@@ -289,11 +289,27 @@ def prop_to_aux(prop):
 	else:
 		return 	 -1
 
+def prop_to_poss(prop):
+	if (prop >= n_pos + n_map + 1) and (prop <=  n_pos + n_poss + 1): 
+		prop -= n_pos + n_map + 1
+		time = prop // (v_max * 2*n_max )
+		v1 = (prop // 2*n_max) % v_max
+		v2 = (prop % 2*n_max)
+		if( v2 > n_max):
+			v2 -= n_max
+		#  t * v_max * 2*n_max + v1 * 2*n_max + x2 + 1
+		return   ("POSSIBLE: t: "+str(time)+" (x1,y1): ("+str(v_to_x(v1))+","+str(v_to_y(v1))+" (x2,y2): ("+str(v_to_x(v2))+","+str(v_to_y(v2))+"\n")
+	else:
+		return 	 -1
+
 def prop_to_text(prop):
 	s = prop_to_pos(prop)
 	if ( s != -1 ):
 		return s
 	s = prop_to_move(prop)
+	if ( s != -1 ):
+		return s
+	s = prop_to_poss(prop)
 	if ( s != -1 ):
 		return s
 	s = prop_to_aux(prop)

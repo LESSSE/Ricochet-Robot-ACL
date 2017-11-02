@@ -40,7 +40,7 @@ def cnf_to_sol(file_sol,file_cnf,file_aux,file_err,t):
 	#TO PROP CONVERTERS		
 	def prop_to_move(prop):
 		if (prop >= n_pos + n_map + n_poss + 1) and (prop <= n_pos + n_map + n_poss + n_mov + 1): 
-			prop -= n_pos + n_map + n_poss - 1
+			prop -= n_pos + n_map + n_poss + 1
 			time = prop // (k_max * d_max)
 			robot = k_to_color((prop // d_max) % k_max)
 			direction = d_to_direction(prop % d_max)

@@ -1,14 +1,14 @@
 import argparse
 import sys
 import itertools
+import sys, os
 
 #positions in xy are from 1 to n_max
 #vertices are from 0 to 
 
-n_aux = 0 
-
 def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 	global n_aux
+	n_aux = 0
 	def xy_to_v(x,y): 
 		'''
 		gives the vertice correpondent to (x,y)
@@ -41,8 +41,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 		Error: -1 when direction not designated
 		'''
 		return {
-			'U': 0,
-			'D': 1,
+			'U': 0,			'D': 1,
 			'R': 2,
 			'L': 3
 		}.get(direction.upper(), (-1,-1))
@@ -269,7 +268,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 				v3 = vd_to_v(v2,d)
 
 	#________________________________________
-	file_err.write("\trr_to_cnf: 1. Positions: each robot have to have one position per time step\n")
+	file_err.write("\trr_to_cnf - 1. Positions: each robot have to have one position per time step\n")
 	#positions
 	#each robot have to have one position per time step 
 	for t in range(0,t_max+1):
@@ -280,7 +279,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 			clauses += "0\n"
 			n_clauses +=1
 
-	file_err.write("\trr_to_cnf:2. Positions: each robot can only be at most at one position at each time step\n")
+	file_err.write("\trr_to_cnf - 2. Positions: each robot can only be at most at one position at each time step\n")
 	#each robot can only be at most at one position at each time step 
 	for t in range(0,t_max+1):
 		for k in ['R','G','Y','B']:
@@ -289,7 +288,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 					clauses += str(-pos_v_to_prop(k,v1,t))+" "+str(-pos_v_to_prop(k,v2,t))+" 0\n"
 					n_clauses +=1
 
-	file_err.write("\trr_to_cnf:3. Possible: possible moves must not have robots in the middle\n")
+	file_err.write("\trr_to_cnf - 3. Possible: possible moves must not have robots in the middle\n")
 	#possible moves must not have robots in the middle
 	for t in range(1,t_max):		
 		for e in edges:
@@ -310,7 +309,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 					clauses += str(-possible_to_prop(x1,y1,x2,y2,t))+" "+str(-pos_xy_to_prop(k,v[0],v[1],t)) +" 0\n"
 					n_clauses += 1
 
-	file_err.write("\trr_to_cnf:4. Possible: need to have a robot at the end\n")
+	file_err.write("\trr_to_cnf - 4. Possible: need to have a robot at the end\n")
 	#possible moves need to have a robot at the end
 	for t in range(1,t_max):		
 		for e in edges:
@@ -343,7 +342,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 					clauses += s  	
 					n_clauses += 1
 
-	file_err.write("\trr_to_cnf:5. Moves: each time step at most one robot can move\n")
+	file_err.write("\trr_to_cnf - 5. Moves: each time step at most one robot can move\n")
 	#at each time step at most one robot can move 
 	for t in range(0,t_max):
 		for k1 in ['R','G','Y','B']:
@@ -354,7 +353,7 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 							clauses += str(-move_to_prop(k1,d1,t))+" "+str(-move_to_prop(k2,d2,t))+" 0\n"
 							n_clauses +=1
 
-	file_err.write("\trr_to_cnf:6. Moves: for each time step each robot or stay or move\n")
+	file_err.write("\trr_to_cnf - 6. Moves: for each time step each robot or stay or move\n")
 	#for each time step each robot or stay or move
 	for k in ['R','B','G','Y']:
 		for t in range(1,t_max+1):
@@ -380,8 +379,9 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 					for j in i:
 						clauses += str(j)+" "+str(-aux)+" 0\n" 
 						n_clauses += 1
+				
+				s = str(-pos_xy_to_prop(k,x2,y2,t))+" "+str(pos_xy_to_prop(k,x2,y2,t-1))+" " 
 
-				s = str(-pos_xy_to_prop(k,x2,y2,t))+" "+str(pos_xy_to_prop(k,x2,y2,t-1))+" "
 				for i in aux_s: 
 					s += str(i)+" "
 				
@@ -401,21 +401,180 @@ def rr_to_cnf(file_rr,file_cnf,file_aux,file_err,t):
 	clauses_s = "p cnf "+str(n_var)+" "+str(n_clauses)+"\n" + clauses
 	file_cnf.write(clauses_s)
 
+def cnf_to_sol(file_sol,file_cnf,file_aux,file_err,t):
+	global n_aux
+	global t_max
+
+	def k_to_color(k):
+		'''
+		gives a numerical code for color
+		Input: character with color
+		Output: 0,1,2,3
+		Error: -1 when color not designated
+		'''
+		return{
+			 0: 'R',
+			 1: 'G',
+			 2: 'Y',
+			 3: 'B'
+		}.get(k, -1)
+	def d_to_direction(d):
+		'''
+		gives a numerical code for direction
+		Input: character with direction
+		Output: 0,1,2,3
+		Error: -1 when direction not designated
+		'''
+		return {
+			 0: 'U',
+			 1: 'D',
+			 2: 'R',
+			 3: 'L'
+		}.get(d, -1)
+
+	#TO PROP CONVERTERS		
+	def prop_to_move(prop):
+		if (prop >= n_pos + n_map + n_poss + 1) and (prop <= n_pos + n_map + n_poss + n_mov + 1): 
+			prop -= n_pos + n_map + n_poss + 1
+			time = prop // (k_max * d_max)
+			robot = k_to_color((prop // d_max) % k_max)
+			direction = d_to_direction(prop % d_max)
+			# t * k_max * d_max + color_to_k(color) * d_max + direction_to_d(direction)
+			return   (time,str(robot) +" "+str(direction)+"\n")
+		else:
+			return 	 (-1,-1)
+
+	lines = file_aux.readlines()
+	for l in lines:
+		l1 = l.strip().split()
+		if l1[0]=='n':
+			n_max = int(l1[1])	#n
+		elif l1[0]=='v':
+			v_max = int(l1[1])  #number of vertices 
+		elif l1[0]=='t':
+			t_max = int(l1[1])	#number of steps
+		elif l1[0]=='k':
+			k_max = int(l1[1])	#number of robots
+		elif l1[0]=='d':
+			d_max = int(l1[1])	#number of directions
+		elif l1[0]=='V':
+			n_var = int(l1[1])	#number of total propositions
+		else:
+			exit
+
+	n_pos = (t_max+1) * v_max * k_max   			#position of each robot for each time                      	
+	n_map = (v_max-1) * (v_max) // 2				#links between two vertices on map   
+	n_poss = t_max * v_max * 2*n_max				#number of possible outcomes  
+	n_mov = t_max * k_max * d_max					#moves per time
+	n_aux = n_var - (n_pos + n_map + n_mov + n_poss)
+
+	clause = file_to_clauses(file_cnf)
+	
+	if(clause == -1):
+		file_err.write("\tcnf_to_sol - 1. UNSATISFIABLE | t = "+str(t_max)+"\n")
+		return -1
+
+	file_err.write("\tcnf_to_sol - 1. SATISFIABLE | t = "+str(t_max)+"\n")
+	file_err.write("\tcnf_to_sol - 2. Moves: creating solution\n")
+	moves = {}
+	for i in clause:
+			if i > 0:
+				pair = prop_to_move(i)
+				if pair[0] > -1:
+					moves[pair[0]] = pair[1]
+
+	file_sol.write(str(len(moves))+"\n")
+	for move in sorted(moves.items()):
+		file_sol.write(move[1])
+
+	return 1
+
+def file_to_clauses(f):
+	c = []
+	for l in f.readlines():
+		l = l.strip()
+		if (l[0] == 's'):
+			if (l.split()[1] == "UNSATISFIABLE"):
+				return -1
+		if (l[0] == 'v'):
+			nclause = map(int, l.split()[1:])
+			c += list(nclause)
+	return c[:-1]
+
+def grow_function(n):
+	if n < 0:
+		return 0
+	elif n == 0:
+		return 1
+	else:
+		return n*2
+
+def rr_solver(t):
+		t_max = t
+
+		f_err = sys.stderr
+		f_rr = open("problem.rr", 'r')
+		f_cnf = open("problem-"+ str(t_max) +".cnf", 'w')
+		f_aux = open("vars-"+ str(t_max) +".aux", 'w')
+	
+		f_err.write("RR_TO_CNF | "+str(t_max)+" \n")
+		rr_to_cnf(f_rr,f_cnf,f_aux,f_err,t_max)
+
+		f_cnf.close()
+		f_aux.close()
+
+		os.system("./lingeling < problem-"+str(t_max)+".cnf > solution-"+str(t_max)+".cnf")
+
+		f_cnf = open("solution-"+ str(t_max) +".cnf", 'r')
+		f_aux = open("vars-"+ str(t_max) +".aux", 'r')
+		f_sol = open("solution-"+str(t_max)+".sol", 'w')
+
+		f_err.write("CNF_TO_SOL "+str(t_max)+"\n")
+		sat = cnf_to_sol(f_sol,f_cnf,f_aux,f_err,t_max)
+
+		f_cnf.close()
+		f_aux.close()
+
+		f_err.write("______________________________________________\n")
+
+		return sat
+
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description='ricochet robots to cnf')
-	parser.add_argument('-t', nargs='?', type=int, help='the number of steps', default = 1) 
+	parser = argparse.ArgumentParser(description='Ricochet Robot Solver in SAT')
 	args = parser.parse_args()
 
-	t_max = args.t
-	
-	f_err = sys.stderr
-	f_rr = sys.stdin
-	f_cnf = open("problem-"+ str(t_max) +".cnf", 'w')
-	f_aux = open("vars-"+ str(t_max) +".aux", 'w')
-	
-	f_err.write("RR_TO_CNF\n")
-	rr_to_cnf(f_rr,f_cnf,f_aux,f_err,t_max)
+	f_problem = open("problem.rr", 'w')
+	problem = sys.stdin.readlines()
+	for l in problem:
+		f_problem.write(l)
+	f_problem.close()
 
-	f_cnf.close()
-	f_aux.close()
-	
+	t_max = -1 #always sat
+	t_min = -1 #always unsat
+
+	sat = 0
+	minor = 0
+
+	while( sat != 1 ) and (t_max <= 20):
+		t_min = t_max
+		t_max = grow_function(t_max)
+		sat = rr_solver(t_max)
+
+	t = t_min + (t_max - t_min) // 2
+	while(t != t_min):
+		sat = rr_solver(t)
+		if(sat == 1):
+			t_max = t
+		else:
+			t_min = t
+		t = t_min + (t_max - t_min) // 2
+
+	sys.stderr.write("solution-"+str(t_max)+".sol")
+	f_solution = open("solution-"+str(t_max)+".sol", 'r')
+	solution = f_solution.readlines()
+	for l in solution:
+		sys.stdout.write(l)
+	sys.stdout.flush()
+	f_solution.close()
+	#os.system("rm *.cnf *.aux problem.rr solution*.sol")
+		
