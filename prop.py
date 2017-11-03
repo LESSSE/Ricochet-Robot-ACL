@@ -6,7 +6,6 @@ def calc(vars):
 	global d_max
 	global n_var
 	global n_pos
-	global n_map
 	global n_poss
 	global n_mov
 	global n_aux
@@ -32,10 +31,9 @@ def calc(vars):
 			exit
 
 	n_pos = (t_max+1) * v_max * k_max   			#position of each robot for each time                      	
-	n_map = (v_max-1) * (v_max) // 2				#links between two vertices on map   
 	n_poss = t_max * v_max * 2*n_max				#number of possible outcomes  
 	n_mov = t_max * k_max * d_max					#moves per time
-	n_aux = n_var - (n_pos + n_map + n_mov + n_poss)
+	n_aux = n_var - (n_pos + n_mov + n_poss)
 
 
 def xy_to_v(x,y): 
@@ -222,17 +220,17 @@ def possible_to_prop(x1,y1,x2,y2,t):
 		return -2 #link to same vertice
 	
 	if y1 == y2:
-		return  n_pos + n_map + t * v_max * 2*n_max + v1 * 2*n_max + x2 + 1
+		return  n_pos + t * v_max * 2*n_max + v1 * 2*n_max + (x2 - 1) + 1
 	else:
-		return  n_pos + n_map + t * v_max * 2*n_max + v1 * 2*n_max + n_max * y2 + 1
+		return  n_pos + t * v_max * 2*n_max + v1 * 2*n_max + n_max + (y2 - 1) + 1
 def move_to_prop(color,direction,t):
 	if direction_to_d(direction) >= 0 and color_to_k(color) >= 0 and t >= 0: 
-		return  n_pos + n_map + n_poss + t * k_max * d_max + color_to_k(color) * d_max + direction_to_d(direction) + 1 
+		return  n_pos + n_poss + t * k_max * d_max + color_to_k(color) * d_max + direction_to_d(direction) + 1 
 	else:
 		return -1
 def aux_to_prop():
 	global n_aux
-	n = n_pos + n_map + n_poss + n_mov + n_aux + 1
+	n = n_pos + n_poss + n_mov + n_aux + 1
 	n_aux += 1
 	return n
 
@@ -264,8 +262,8 @@ def d_to_direction(d):
 	}.get(d, -1)
 
 def prop_to_move(prop):
-	if (prop >= n_pos + n_map + n_poss + 1) and (prop <= n_pos + n_map + n_poss + n_mov + 1): 
-		prop -= n_pos + n_map + n_poss + 1
+	if (prop >= n_pos + n_poss + 1) and (prop <= n_pos + n_poss + n_mov + 1): 
+		prop -= n_pos + n_poss + 1
 		time = prop // (k_max * d_max)
 		robot = k_to_color((prop // d_max) % k_max)
 		direction = d_to_direction(prop % d_max)
@@ -284,21 +282,28 @@ def prop_to_pos(prop):
 		return 	 -1
 
 def prop_to_aux(prop):
-	if (prop >= n_pos + n_map + n_mov + n_poss): 
+	if (prop >= n_pos + n_mov + n_poss): 
 		return   ("AUX:")
 	else:
 		return 	 -1
 
 def prop_to_poss(prop):
-	if (prop >= n_pos + n_map + 1) and (prop <=  n_pos + n_poss + 1): 
-		prop -= n_pos + n_map + 1
+	if (prop >= n_pos + 1) and (prop <=  n_pos + n_poss + 1): 
+		prop -= n_pos + 1
 		time = prop // (v_max * 2*n_max )
-		v1 = (prop // 2*n_max) % v_max
-		v2 = (prop % 2*n_max)
-		if( v2 > n_max):
-			v2 -= n_max
+		v1 = (prop // (2*n_max)) % v_max
+		x1 =v_to_x(v1)
+		y1 =v_to_y(v1)
+		v2 = (prop % (2*n_max))
+		if( v2 >= n_max):
+			x2 = x1
+			y2 = v2 - n_max + 1
+		else:
+			x2 = v2 + 1
+			y2 = y1
+
 		#  t * v_max * 2*n_max + v1 * 2*n_max + x2 + 1
-		return   ("POSSIBLE: t: "+str(time)+" (x1,y1): ("+str(v_to_x(v1))+","+str(v_to_y(v1))+" (x2,y2): ("+str(v_to_x(v2))+","+str(v_to_y(v2))+"\n")
+		return   ("POSSIBLE: t: "+str(time)+" (x1,y1): ("+str(x1)+","+str(y1)+") (x2,y2): ("+str(x2)+","+str(y2)+")\n")
 	else:
 		return 	 -1
 
