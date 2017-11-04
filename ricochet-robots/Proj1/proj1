@@ -1,0 +1,10 @@
+#/bin/bash
+
+problem="problem.rr"
+
+if [ ! -z $1 ]; then
+	problem=$1
+fi
+
+python rr-solver.py < $1  
+#rm *.cnf *.aux *.sol
