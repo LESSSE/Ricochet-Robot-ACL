@@ -14,12 +14,17 @@ Problem Desciption:
 
 ___________________________________________________________________
 
-
-This solution is base in SAT, it creates different cnf descriptions for the problem for different number of time steps and solve them, searching for the least number of times steps. This search starts growing exponentially and when it finds a satisfiable solution it uses binary search to find the least number of steps.  
+This solution is based in SAT, it creates different cnf descriptions for the problem for different number of time steps and solve them, searching for the least number of times steps. This search starts growing exponentially and when it finds a satisfiable solution it uses binary search to find the least number of steps.  
 
 It uses lingeling as SAT solver and Python as programming language.
 
 It runs in Linux systems.
+__________________________________________________________________
+
+Solutions found for all the tests in Problems are available in Resolve/<test_name>.sol
+
+The run time for each test is available at the end of file Resolve/<test_name>.err
+
 __________________________________________________________________
 
 ## USAGE
