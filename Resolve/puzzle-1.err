@@ -1,6 +1,0 @@
-RR_TO_CNF | Time: 0.427269935608 
-SAT_SOLVER | Time: 0.0309009552002 
-	cnf_to_sol - 1. SATISFIABLE | t = 0
-CNF_TO_SOL | Time: 0.00268220901489 
-______________________________________________
-TOTAL TIME: 0.465484142303 
