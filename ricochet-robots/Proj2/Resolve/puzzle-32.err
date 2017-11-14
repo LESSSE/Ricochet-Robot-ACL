@@ -1,0 +1,46 @@
+RR_TO_CNF | Time: 0.710103988647 
+SAT_SOLVER | Time: 0.062203168869 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 0
+CNF_TO_SOL | Time: 0.00116896629333 
+______________________________________________
+RR_TO_CNF | Time: 3.75771808624 
+SAT_SOLVER | Time: 0.165198087692 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 1
+CNF_TO_SOL | Time: 0.0013210773468 
+______________________________________________
+RR_TO_CNF | Time: 5.83961582184 
+SAT_SOLVER | Time: 0.246298074722 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 2
+CNF_TO_SOL | Time: 0.00160193443298 
+______________________________________________
+RR_TO_CNF | Time: 10.6402590275 
+SAT_SOLVER | Time: 0.472887039185 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 4
+CNF_TO_SOL | Time: 0.00135898590088 
+______________________________________________
+RR_TO_CNF | Time: 23.5837359428 
+SAT_SOLVER | Time: 3.28449606895 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 8
+CNF_TO_SOL | Time: 0.00119304656982 
+______________________________________________
+RR_TO_CNF | Time: 46.824652195 
+SAT_SOLVER | Time: 13.113847971 
+	cnf_to_sol - 1. SATISFIABLE | t = 16
+CNF_TO_SOL | Time: 0.348021030426 
+______________________________________________
+RR_TO_CNF | Time: 34.7994651794 
+SAT_SOLVER | Time: 30.5238158703 
+	cnf_to_sol - 1. SATISFIABLE | t = 12
+CNF_TO_SOL | Time: 0.255676031113 
+______________________________________________
+RR_TO_CNF | Time: 28.7735629082 
+SAT_SOLVER | Time: 10.2410619259 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 10
+CNF_TO_SOL | Time: 0.00121998786926 
+______________________________________________
+RR_TO_CNF | Time: 33.007322073 
+SAT_SOLVER | Time: 16.2913968563 
+	cnf_to_sol - 1. UNSATISFIABLE | t = 11
+CNF_TO_SOL | Time: 0.00171184539795 
+______________________________________________
+TOTAL TIME: 262.969508171 
