@@ -406,6 +406,7 @@ def rr_solver(t):
 		f_aux = open("vars-"+ str(t_max) +".aux", 'w')
 	
 		#f_err.write("RR_TO_smt | "+str(t_max)+" \n")
+		sys.stderr.write("Timesteps: "+str(t_max)+"\n")
 		rr_to_smt(f_rr,f_smt,f_aux,f_err,t_max)
 
 		f_smt.close()
@@ -422,7 +423,7 @@ def rr_solver(t):
 
 		#f_err.write("SAT_SOLVER\n")
 
-		os.system("./z3 -smt2 problem-"+str(t_max)+".smt > solution-"+str(t_max)+".smt")
+		os.system("./../z3-4.5.0-x64-ubuntu-14.04/bin/z3 -smt2 problem-"+str(t_max)+".smt > solution-"+str(t_max)+".smt")
 
 		end = time.time()
 
