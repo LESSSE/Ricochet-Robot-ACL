@@ -509,7 +509,6 @@ if __name__ == "__main__":
 	solution = f_solution.readlines()
 	#sys.stderr.write(solution)
 	for l in solution:
-		sys.stderr.write(l)
 		sys.stdout.write(l)
 	sys.stdout.flush()
 	f_solution.close()
