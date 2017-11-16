@@ -168,6 +168,7 @@ def rr_to_smt(file_rr,file_smt,file_aux,file_err,t):
 	color = l.split()[0][0]
 	x = int(l.split()[1])
 	y = int(l.split()[2])
+	v = xy_to_v(x,y)
 	program += "(assert (= "+str(v)+" (position "+str(color_to_k(color))+" "+str(t_max)+")))\n"
 
 
@@ -284,7 +285,8 @@ def rr_to_smt(file_rr,file_smt,file_aux,file_err,t):
 	vars_s += "V "+str(n_var)+"\n"
 	file_aux.write(vars_s)
 
-	program += "(check-sat)"
+	program += "(check-sat)\n"
+	program += "(get-model)"
 	file_smt.write(program)
 
 def smt_to_sol(file_sol,file_smt,file_aux,file_err,t):
@@ -426,7 +428,7 @@ def rr_solver(t):
 
 		end = time.time()
 
-		f_err.write("SAT_SOLVER | Time: "+str(end - start)+" \n")
+		f_err.write("SMT_SOLVER | Time: "+str(end - start)+" \n")
 
 		'''
 		#____
