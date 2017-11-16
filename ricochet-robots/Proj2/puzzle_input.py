@@ -86,15 +86,15 @@ def readEdges(in_file, outfile):
      cur_line = cur_line[: len(cur_line)-1] #ignore \n
      cur_tok = cur_line.split(" ")
      goal = [ colToInt(cur_tok[0]), int(cur_tok[1])-1, int(cur_tok[2])-1 ]
-     ac="(assert "
+     ac="(assert (or "
      count=1
      for time in range(dim_time):
           count+=1
-          ac+="(or (position "+str(int(cur_tok[1])-1)+" "+str(int(cur_tok[2])-1)+" "+str(colToInt(cur_tok[0]))+" "+str(time)+") "
-     for i in range(count):
-          ac+=")"
-     #print(ac)
-     outfile.write(ac+"\n")
+          ac+="(position "+str(int(cur_tok[1])-1)+" "+str(int(cur_tok[2])-1)+" "+str(colToInt(cur_tok[0]))+" "+str(time)+") "
+     #for i in range(count):
+     #     ac+=")"
+     #print(ac+"))")
+     outfile.write(ac+"))\n")
      
      #read number of barriers
      cur_line = in_file.readline()

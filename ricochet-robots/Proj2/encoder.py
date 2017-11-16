@@ -80,10 +80,12 @@ def writeEverything(infile, outfile, t_max):
     
     #print(";Moved constraint")
     outfile.write(";Moved constraint\n")
-    Encoding.writeMovedConstraint(outfile)
+    Encoding.writeMovedConstraintLogic(outfile)
+    #Encoding.writeMovedConstraint(outfile)
     #print(";Single position constraint")
     outfile.write(";Single position constraint\n")
-    Encoding.writeSinglePositionConstraint(outfile)
+    #Encoding.writeSinglePositionConstraint(outfile)
+    Encoding.writeSinglePositionConstraintLogic(outfile)
     #print(";Clear path constraints")
     outfile.write(";Clear path constraints\n")
     Encoding.writeClearPathConstraints(extEdgelist, outfile)
@@ -131,22 +133,30 @@ def getDirection(robotPos1, robotPos2):
 
 
 
+'''
 
-#filename = sys.argv[1]
+filename = sys.argv[1]
 #filename="barriermaze3x3.txt"
 #filename="puzzle-1.rr"
-#splitfilename = filename.split("/")
-#cur_name = splitfilename[ len(splitfilename)-1 ]
-#splitfilename=cur_name.split(".")
-#cur_name = splitfilename[0]
-##print(cur_name)
+splitfilename = filename.split("/")
+cur_name = splitfilename[ len(splitfilename)-1 ]
+splitfilename=cur_name.split(".")
+cur_name = splitfilename[0]
+#print(cur_name)
 
+outfile_name="out"
 #outfile_name = "../system_output/"+cur_name+"_opt.cnf"
-#outfile_name = cur_name+".z3"
+outfile_name = cur_name+".z3"
 ##print("Outfile name is: "+outfile_name)
 
-#writeEverything(outfile_name)
+in_file = open(sys.argv[1], "r")
+outfile = open(outfile_name, "w")
 
+writeEverything(in_file, outfile, 3)
+
+'''
+
+'''
 
 
 ##foundSolution=False
@@ -201,3 +211,4 @@ def getDirection(robotPos1, robotPos2):
 ##			
 ##            exit();
 ##            
+'''

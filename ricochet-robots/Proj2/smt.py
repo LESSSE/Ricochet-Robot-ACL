@@ -48,37 +48,63 @@ dim_col=3
 
 ###################################################################################
 
+def writeSinglePositionConstraintLogic(outfile):
+     for time in range(dim_time):
+          for robot in range(dim_robot):
+               for line1 in range(dim_line):
+                    for col1 in range(dim_col):
+                         ac="(assert (=> ( position "+str(line1)+" "+str(col1)+" "+str(robot)+" "+str(time)+") (and "
+                         for line2 in range(dim_line):
+                              for col2 in range(dim_col):
+                                   if(line1==line2 and col1==col2):
+                                        continue
+                                   ac+="(not (position "+str(line2)+" "+str(col2)+" "+str(robot)+" "+str(time)+"))"
+                         ac+=")))"
+                         outfile.write(ac+"\n")
+               
+               
 #( assert  ( + position() (+ position() (+ position() (+ ... ) ) ) ) )
 def writeSinglePositionConstraint(outfile):
      for time in range(dim_time):
           for robot in range(dim_robot):
-               ac="( assert ( = "
+               ac="( assert ( = ( + "
                count=0 #count the number of closing parenthesis
                for line in range(dim_line):
                     for col in range(dim_col):
-                         ac+="( + (ite (position "+str(line)+" "+str(col)+" "+str(robot)+" "+str(time)+" ) 1 0) "
+                         ac+="(ite (position "+str(line)+" "+str(col)+" "+str(robot)+" "+str(time)+" ) 1 0) "
                          count+=1
-               ac+="0"
-               for i in range(count):
-                    ac+=")"
-               ac+=" 1 ) )"
+               #ac+="0"
+               #for i in range(count):
+               #     ac+=")"
+               ac+=") 1 ) ) "
                #if(outfile!=-1):
                #     outfile.write(ac)
                #print(ac)
                outfile.write(ac+"\n")
 
 ###################################################################################
-
+def writeMovedConstraintLogic(outfile):
+     for time in range(dim_time):
+          for robot1 in range(dim_robot):
+               ac="( assert ( => (moved "+str(robot1)+" " +str(time)+" ) (and  "
+               for robot2 in range(dim_robot):
+                    if robot1==robot2:
+                         continue
+                    ac+="(not (moved "+str(robot2)+" "+str(time)+" )) "
+               ac+=")))\n"
+               outfile.write(ac)
+          
+          
 def writeMovedConstraint(outfile):
      for time in range(dim_time):
-          ac="( assert ( = "
+          ac="( assert ( = ( + "
           count=0
           for robot in range(dim_robot):
-               ac+="( + (ite ( moved  "+ str(robot) + " " + str(time) + " ) 1 0) "
+               ac+="(ite ( moved  "+ str(robot) + " " + str(time) + " ) 1 0) "
                count+=1
-          for i in range(count):
-               ac+=")"
-          ac+=" 1 ) )"
+          #for i in range(count):
+          #     ac+=")"
+          ac+=") 1 ) ) "
           #if(outfile!=-1):
           #     outfile.write(ac)
           #print(ac)
@@ -93,10 +119,10 @@ def getNoRobotInPosition(line, col, time):
      count=0
      ac=""
      for robot in range(dim_robot):
-          ac+="( and (not ( position "+str(line)+" "+str(col)+" " +str(robot)+" " +str(time)+" )) "
+          ac+="(not ( position "+str(line)+" "+str(col)+" " +str(robot)+" " +str(time)+" )) "
           count+=1
-     for i in range(count):
-          ac+=")"
+     #for i in range(count):
+     #     ac+=")"
      return ac+" "
 
 # a->b is CLEAR => a->b-1 is CLEAR AND b has no robot
@@ -111,7 +137,7 @@ def writeClearPathConstraint_Single( start_line, start_col, end_line, end_col, o
           for time in range(dim_time):
                pos = str(start_line) + " " + str(start_col) + " " + str(end_line) + " " +str(end_col) + " " + str(time)+" "
                
-               ac="( assert (=> ( clear "+pos+") "+getNoRobotInPosition(end_line, end_col, time)+")) "
+               ac="( assert (=> ( clear "+pos+") (and "+getNoRobotInPosition(end_line, end_col, time)+"))) "
 
                #if(outfile!=-1):
                #     outfile.write(ac)
@@ -154,13 +180,13 @@ def writeClearPathConstraints(extEdgelist, outfile=-1):
 
 def getRobotInPosition(line, col, time):
      count=0
-     ac=""
+     ac="( or "
      for robot in range(dim_robot):
-          ac+="( or ( position "+str(line)+" "+str(col)+" " +str(robot)+" " +str(time)+" ) "
+          ac+="( position "+str(line)+" "+str(col)+" " +str(robot)+" " +str(time)+" ) "
           count+=1
-     for i in range(count):
-          ac+=")"
-     return ac+" "
+     #for i in range(count):
+     #     ac+=")"
+     return ac+") "
 
 #Stop Vertex constraint
 def writePossibleMovementConstraint_Single( start_line, start_col, end_line, end_col, outfile ):
@@ -233,7 +259,7 @@ def getTripleConjunction(start_line, start_col, dest_line, dest_col, robot, time
      pos =str(start_line)+" "+str(start_col)+" "+str(robot)+" "+str(time)+" "
      path = str(start_line)+" " + str(start_col)+" "+str(dest_line) + " " + str(dest_col)+" " +str(time)+" "
      moved = str(robot) + " " + str(time)
-     return "( and ( position "+ pos + ") (and ( possible "+ path + " ) ( moved "+ moved + ") ) ) "
+     return "( and ( position "+ pos + ") ( possible "+ path + " ) ( moved "+ moved + ") )"
 
 
 
