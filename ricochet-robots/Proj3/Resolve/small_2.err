@@ -1,0 +1,7 @@
+RR_TO_mzn | Time: 0.0725629329681 
+sh: 1: ./Minizinc/mzn-g12fd: Permission denied
+MZN_SOLVER | Time: 0.00629806518555 
+	mzn_to_sol - 1. SATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00240993499756 
+______________________________________________
+TOTAL TIME: 0.0866658687592 

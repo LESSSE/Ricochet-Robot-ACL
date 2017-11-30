@@ -1,0 +1,19 @@
+#/bin/bash
+
+problem="problem.rr"
+
+if [ ! -z $1 ]; then
+	problem=$1
+fi
+
+if [ ! -d "Minizinc" ]; then
+	echo "Downloading Minizinc"
+	wget https://github.com/Minizinc/MinizincIDE/releases/download/2.1.6/MinizincIDE-2.1.6-bundle-linux-x86_32.tgz
+	tar -xzf MinizincIDE-2.1.6-bundle-linux-x86_32.tgz
+	mv MiniZincIDE-2.1.6-bundle-linux-x86_32 Minizinc
+	mv MinizincIDE-2.1.6-bundle-linux-x86_32.tgz Minzinc/
+fi
+
+export PATH="$(pwd)/Minizinc":$PATH
+python rr-solver.py < $1  
+#rm *.cnf *.aux *.sol

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site.py", line 68, in <module>
+    import os
+  File "/usr/lib/python2.7/os.py", line 49, in <module>
+    import posixpath as path
+  File "/usr/lib/python2.7/posixpath.py", line 17, in <module>
+    import warnings
+  File "/usr/lib/python2.7/warnings.py", line 8, in <module>
+    import types
+  File "/usr/lib/python2.7/types.py", line 4, in <module>
+    """
+KeyboardInterrupt

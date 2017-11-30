@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "rr-solver.py", line 475, in <module>
+    sat = rr_solver(t_sat)
+  File "rr-solver.py", line 413, in rr_solver
+    rr_to_mzn(f_rr,f_mzn,f_aux,f_err,t_max)
+  File "rr-solver.py", line 252, in rr_to_mzn
+    x2, y2 = v_to_x(v2),v_to_y(v2)
+  File "rr-solver.py", line 83, in v_to_y
+    if v in range(0,v_max): 
+KeyboardInterrupt

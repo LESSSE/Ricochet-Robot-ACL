@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "rr-solver.py", line 475, in <module>
+    sat = rr_solver(t_sat)
+  File "rr-solver.py", line 413, in rr_solver
+    rr_to_mzn(f_rr,f_mzn,f_aux,f_err,t_max)
+  File "rr-solver.py", line 231, in rr_to_mzn
+    x1, y1 = v_to_x(v1),v_to_y(v1)
+KeyboardInterrupt

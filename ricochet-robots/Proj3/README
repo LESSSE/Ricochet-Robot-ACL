@@ -1,0 +1,31 @@
+==================Ricochet Robots SMT-Based Solver================
+
+ALC
+Group 2
+
+Diogo Costa 78738
+Instituo Superior Técnico
+MEIC-A
+
+Luis Espirito Santo 78303
+Instituto Superior Técnico
+MEIC-A
+
+Problem Desciption: 
+* F. Gouveia, P. T. Monteiro, V. M. Manquinho, and I. Lynce.  Logic-based encodings for ricochet robots. In Progress in Artificial Intelligence - 18th EPIA Conference on Artificial Intelligence, EPIA 2017, Porto, Portugal, September 5-8, 2017, Proceedings , pages 657–669, 2017
+
+*N. Butko, K. A. Lehmann, and V. Ramenzoni.  Ricochet robots-a case study for human complex problem solving. Project thesis from the Complex System Summer School, Santa Fe Institute, 2006
+
+___________________________________________________________________
+
+
+This solution is based in SMT, it creates different descriptions for the problem for different number of time steps and solve them, searching for the least number of times steps. This search starts growing exponentially and when it finds a satisfiable solution it uses binary search to find the least number of steps.  
+
+It uses Z3 as solver and Python as programming language.
+
+It runs in Linux systems.
+__________________________________________________________________
+
+## USAGE
+
+./proj2 problem.rr > solution.sol
