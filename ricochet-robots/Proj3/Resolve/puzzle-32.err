@@ -1,8 +1,64 @@
-Traceback (most recent call last):
-  File "rr-solver.py", line 475, in <module>
-    sat = rr_solver(t_sat)
-  File "rr-solver.py", line 413, in rr_solver
-    rr_to_mzn(f_rr,f_mzn,f_aux,f_err,t_max)
-  File "rr-solver.py", line 231, in rr_to_mzn
-    x1, y1 = v_to_x(v1),v_to_y(v1)
-KeyboardInterrupt
+RR_TO_mzn | Time: 0.678035974503 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.486068964005 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00169086456299 
+______________________________________________
+RR_TO_mzn | Time: 0.715614795685 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4303:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.4363360405 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00167489051819 
+______________________________________________
+RR_TO_mzn | Time: 0.706085920334 
+MZN_SOLVER | Time: 3.95084691048 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00137305259705 
+______________________________________________
+RR_TO_mzn | Time: 0.674238920212 
+MZN_SOLVER | Time: 10.8517370224 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00190496444702 
+______________________________________________
+RR_TO_mzn | Time: 0.789444923401 
+MZN_SOLVER | Time: 15.6837110519 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00140190124512 
+______________________________________________
+RR_TO_mzn | Time: 0.697705984116 
+MZN_SOLVER | Time: 19.1903281212 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00139713287354 
+______________________________________________
+RR_TO_mzn | Time: 0.673290014267 
+MZN_SOLVER | Time: 23.3945870399 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00182795524597 
+______________________________________________
+RR_TO_mzn | Time: 0.694305896759 
+MZN_SOLVER | Time: 34.019272089 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00168490409851 
+______________________________________________
+RR_TO_mzn | Time: 0.708305835724 
+MZN_SOLVER | Time: 101.23002696 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 9
+mzn_TO_SOL | Time: 0.00180602073669 
+______________________________________________
+RR_TO_mzn | Time: 0.703321933746 
+MiniZinc: internal error: out of memory
+MZN_SOLVER | Time: 12.8511910439 
+	mzn_to_sol - 1. SATISFIABLE | t = 10
+mzn_TO_SOL | Time: 0.00188016891479 
+______________________________________________
+TOTAL TIME: 230.160577059 

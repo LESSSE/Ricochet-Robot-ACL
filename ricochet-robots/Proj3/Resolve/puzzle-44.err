@@ -1,7 +1,59 @@
-RR_TO_mzn | Time: 0.677644968033 
-sh: 1: ./Minizinc/mzn-g12fd: Permission denied
-MZN_SOLVER | Time: 0.00712513923645 
-	mzn_to_sol - 1. SATISFIABLE | t = 0
-mzn_TO_SOL | Time: 0.00140690803528 
+RR_TO_mzn | Time: 0.746246099472 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.457262992859 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00187206268311 
 ______________________________________________
-TOTAL TIME: 0.691123962402 
+RR_TO_mzn | Time: 0.701811075211 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4240:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.41897988319 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00191402435303 
+______________________________________________
+RR_TO_mzn | Time: 0.718225955963 
+MZN_SOLVER | Time: 4.04050302505 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00155210494995 
+______________________________________________
+RR_TO_mzn | Time: 0.833311080933 
+MZN_SOLVER | Time: 11.354706049 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00217294692993 
+______________________________________________
+RR_TO_mzn | Time: 0.674319028854 
+MZN_SOLVER | Time: 13.8601880074 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00116300582886 
+______________________________________________
+RR_TO_mzn | Time: 0.701455831528 
+MZN_SOLVER | Time: 20.1981370449 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00198698043823 
+______________________________________________
+RR_TO_mzn | Time: 0.682426929474 
+MZN_SOLVER | Time: 49.296890974 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00141310691833 
+______________________________________________
+RR_TO_mzn | Time: 0.639374017715 
+MZN_SOLVER | Time: 233.645934105 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00135588645935 
+______________________________________________
+RR_TO_mzn | Time: 0.666216135025 
+Segmentation fault (core dumped)
+MZN_SOLVER | Time: 198.044312 
+	mzn_to_sol - 1. SATISFIABLE | t = 9
+mzn_TO_SOL | Time: 0.00171113014221 
+______________________________________________
+TOTAL TIME: 538.723087072 

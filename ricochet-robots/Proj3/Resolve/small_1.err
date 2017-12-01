@@ -1,7 +1,38 @@
-RR_TO_mzn | Time: 0.0557339191437 
-sh: 1: ./Minizinc/mzn-g12fd: Permission denied
-MZN_SOLVER | Time: 0.0055627822876 
-	mzn_to_sol - 1. SATISFIABLE | t = 0
-mzn_TO_SOL | Time: 0.00126099586487 
+RR_TO_mzn | Time: 0.0728299617767 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.235031843185 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00127816200256 
 ______________________________________________
-TOTAL TIME: 0.0693531036377 
+RR_TO_mzn | Time: 0.0715777873993 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:706:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 0.313002109528 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00200414657593 
+______________________________________________
+RR_TO_mzn | Time: 0.0776770114899 
+MZN_SOLVER | Time: 0.775665044785 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00146698951721 
+______________________________________________
+RR_TO_mzn | Time: 0.0743980407715 
+MZN_SOLVER | Time: 2.01513409615 
+	mzn_to_sol - 1. SATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00193786621094 
+______________________________________________
+RR_TO_mzn | Time: 0.0739769935608 
+MZN_SOLVER | Time: 2.20676398277 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 3
+mzn_TO_SOL | Time: 0.00186610221863 
+______________________________________________
+TOTAL TIME: 5.93069696426 

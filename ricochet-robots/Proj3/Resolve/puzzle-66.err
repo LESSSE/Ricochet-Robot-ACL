@@ -1,1 +1,59 @@
-./test.sh: line 9: ./proj2: No such file or directory
+RR_TO_mzn | Time: 0.686664104462 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.493848085403 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00108098983765 
+______________________________________________
+RR_TO_mzn | Time: 0.669728040695 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4082:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.11250495911 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00179505348206 
+______________________________________________
+RR_TO_mzn | Time: 0.659979104996 
+MZN_SOLVER | Time: 4.11393713951 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.0018630027771 
+______________________________________________
+RR_TO_mzn | Time: 0.724548101425 
+MZN_SOLVER | Time: 11.2533671856 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00149822235107 
+______________________________________________
+RR_TO_mzn | Time: 0.670809030533 
+MZN_SOLVER | Time: 14.5266041756 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00172901153564 
+______________________________________________
+RR_TO_mzn | Time: 0.688649892807 
+MZN_SOLVER | Time: 20.3621189594 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00213599205017 
+______________________________________________
+RR_TO_mzn | Time: 0.669419050217 
+MZN_SOLVER | Time: 32.6625850201 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00152111053467 
+______________________________________________
+RR_TO_mzn | Time: 0.674385070801 
+MZN_SOLVER | Time: 122.852699995 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00210690498352 
+______________________________________________
+RR_TO_mzn | Time: 0.680359125137 
+Segmentation fault (core dumped)
+MZN_SOLVER | Time: 265.049664974 
+	mzn_to_sol - 1. SATISFIABLE | t = 9
+mzn_TO_SOL | Time: 0.00136017799377 
+______________________________________________
+TOTAL TIME: 478.593474865 

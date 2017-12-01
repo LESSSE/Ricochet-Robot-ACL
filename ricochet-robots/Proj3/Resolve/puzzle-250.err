@@ -1,0 +1,53 @@
+RR_TO_mzn | Time: 0.71191906929 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.445582151413 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00144696235657 
+______________________________________________
+RR_TO_mzn | Time: 0.696411848068 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4221:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.45892500877 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00238490104675 
+______________________________________________
+RR_TO_mzn | Time: 0.682550907135 
+MZN_SOLVER | Time: 4.13584589958 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00135087966919 
+______________________________________________
+RR_TO_mzn | Time: 0.68297290802 
+MZN_SOLVER | Time: 11.0517230034 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00144696235657 
+______________________________________________
+RR_TO_mzn | Time: 0.669386863708 
+MZN_SOLVER | Time: 15.0474410057 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.001305103302 
+______________________________________________
+RR_TO_mzn | Time: 0.674453020096 
+MZN_SOLVER | Time: 18.9334890842 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00122213363647 
+______________________________________________
+RR_TO_mzn | Time: 0.798905849457 
+MZN_SOLVER | Time: 26.7457849979 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00210189819336 
+______________________________________________
+RR_TO_mzn | Time: 0.6656498909 
+MZN_SOLVER | Time: 50.3491220474 
+	mzn_to_sol - 1. SATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00131797790527 
+______________________________________________
+TOTAL TIME: 133.783004999 

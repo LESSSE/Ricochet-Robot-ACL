@@ -425,7 +425,7 @@ def rr_solver(t):
 
 		#f_err.write("SAT_SOLVER\n")
 
-		os.system("./Minizinc/mzn-g12fd problem-"+str(t_max)+".mzn > solution-"+str(t_max)+".mzn")
+		os.system("./Minizinc/mzn-chuffed problem-"+str(t_max)+".mzn > solution-"+str(t_max)+".mzn")
 
 		end = time.time()
 

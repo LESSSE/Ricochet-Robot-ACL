@@ -1,1 +1,48 @@
-./test.sh: line 9: ./proj2: No such file or directory
+RR_TO_mzn | Time: 0.650371074677 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.485139131546 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00183701515198 
+______________________________________________
+RR_TO_mzn | Time: 0.722353935242 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4145:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.16786694527 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00165104866028 
+______________________________________________
+RR_TO_mzn | Time: 0.704149007797 
+MZN_SOLVER | Time: 4.31200194359 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00148391723633 
+______________________________________________
+RR_TO_mzn | Time: 0.678803920746 
+MZN_SOLVER | Time: 11.2843999863 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00124406814575 
+______________________________________________
+RR_TO_mzn | Time: 0.71621799469 
+MZN_SOLVER | Time: 15.3222839832 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00136399269104 
+______________________________________________
+RR_TO_mzn | Time: 0.697691917419 
+MZN_SOLVER | Time: 24.2102630138 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00195407867432 
+______________________________________________
+RR_TO_mzn | Time: 0.687227010727 
+MZN_SOLVER | Time: 26.236905098 
+	mzn_to_sol - 1. SATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00219392776489 
+______________________________________________
+TOTAL TIME: 87.9020800591 

@@ -1,0 +1,54 @@
+RR_TO_mzn | Time: 0.678274869919 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.4770860672 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00172519683838 
+______________________________________________
+RR_TO_mzn | Time: 0.644223928452 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4233:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.36636996269 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00205111503601 
+______________________________________________
+RR_TO_mzn | Time: 0.69185590744 
+MZN_SOLVER | Time: 4.05535197258 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00150513648987 
+______________________________________________
+RR_TO_mzn | Time: 0.685460090637 
+MZN_SOLVER | Time: 11.1332809925 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.0017249584198 
+______________________________________________
+RR_TO_mzn | Time: 0.682497024536 
+MZN_SOLVER | Time: 15.5113258362 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00141882896423 
+______________________________________________
+RR_TO_mzn | Time: 0.701163053513 
+MZN_SOLVER | Time: 19.3842558861 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00214600563049 
+______________________________________________
+RR_TO_mzn | Time: 0.652043819427 
+MZN_SOLVER | Time: 36.2624621391 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00199699401855 
+______________________________________________
+RR_TO_mzn | Time: 0.764084100723 
+Segmentation fault (core dumped)
+MZN_SOLVER | Time: 246.358968973 
+	mzn_to_sol - 1. SATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00208282470703 
+______________________________________________
+TOTAL TIME: 340.085030794 

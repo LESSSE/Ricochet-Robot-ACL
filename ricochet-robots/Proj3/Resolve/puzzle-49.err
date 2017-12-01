@@ -1,10 +1,38 @@
-Traceback (most recent call last):
-  File "rr-solver.py", line 475, in <module>
-    sat = rr_solver(t_sat)
-  File "rr-solver.py", line 413, in rr_solver
-    rr_to_mzn(f_rr,f_mzn,f_aux,f_err,t_max)
-  File "rr-solver.py", line 252, in rr_to_mzn
-    x2, y2 = v_to_x(v2),v_to_y(v2)
-  File "rr-solver.py", line 83, in v_to_y
-    if v in range(0,v_max): 
-KeyboardInterrupt
+RR_TO_mzn | Time: 0.709711074829 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.507359981537 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00149488449097 
+______________________________________________
+RR_TO_mzn | Time: 0.747307062149 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4065:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.10588002205 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00139117240906 
+______________________________________________
+RR_TO_mzn | Time: 0.70778298378 
+MZN_SOLVER | Time: 4.19215703011 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00185298919678 
+______________________________________________
+RR_TO_mzn | Time: 0.686050891876 
+MZN_SOLVER | Time: 11.2464909554 
+	mzn_to_sol - 1. SATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00158405303955 
+______________________________________________
+RR_TO_mzn | Time: 0.663365125656 
+MZN_SOLVER | Time: 7.31558489799 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 3
+mzn_TO_SOL | Time: 0.00112915039062 
+______________________________________________
+TOTAL TIME: 27.9893519878 

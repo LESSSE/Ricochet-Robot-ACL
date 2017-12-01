@@ -1,12 +1,38 @@
-Traceback (most recent call last):
-  File "/usr/lib/python2.7/site.py", line 68, in <module>
-    import os
-  File "/usr/lib/python2.7/os.py", line 49, in <module>
-    import posixpath as path
-  File "/usr/lib/python2.7/posixpath.py", line 17, in <module>
-    import warnings
-  File "/usr/lib/python2.7/warnings.py", line 8, in <module>
-    import types
-  File "/usr/lib/python2.7/types.py", line 4, in <module>
-    """
-KeyboardInterrupt
+RR_TO_mzn | Time: 0.671583175659 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.486868143082 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00231099128723 
+______________________________________________
+RR_TO_mzn | Time: 0.661693811417 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4064:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.05447697639 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00191688537598 
+______________________________________________
+RR_TO_mzn | Time: 0.666009902954 
+MZN_SOLVER | Time: 3.79790306091 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00128602981567 
+______________________________________________
+RR_TO_mzn | Time: 0.711519002914 
+MZN_SOLVER | Time: 10.8455510139 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00167489051819 
+______________________________________________
+RR_TO_mzn | Time: 0.709488868713 
+MZN_SOLVER | Time: 14.8322122097 
+	mzn_to_sol - 1. SATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00161910057068 
+______________________________________________
+TOTAL TIME: 34.4544670582 

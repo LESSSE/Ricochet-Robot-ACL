@@ -1,1 +1,61 @@
-./test.sh: line 9: ./proj2: No such file or directory
+RR_TO_mzn | Time: 0.653741121292 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.436091899872 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00163912773132 
+______________________________________________
+RR_TO_mzn | Time: 0.709833145142 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4136:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.10076594353 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00128293037415 
+______________________________________________
+RR_TO_mzn | Time: 0.635624885559 
+MZN_SOLVER | Time: 3.57010197639 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00154590606689 
+______________________________________________
+RR_TO_mzn | Time: 0.667275905609 
+MZN_SOLVER | Time: 10.9298129082 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00128316879272 
+______________________________________________
+RR_TO_mzn | Time: 0.698860883713 
+MZN_SOLVER | Time: 14.6804120541 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00166511535645 
+______________________________________________
+RR_TO_mzn | Time: 0.678420066833 
+MZN_SOLVER | Time: 21.7768700123 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00196504592896 
+______________________________________________
+RR_TO_mzn | Time: 0.651340007782 
+MZN_SOLVER | Time: 63.711329937 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00186514854431 
+______________________________________________
+RR_TO_mzn | Time: 0.695711135864 
+MZN_SOLVER | Time: 218.489496946 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00207781791687 
+______________________________________________
+RR_TO_mzn | Time: 0.640816926956 
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+MZN_SOLVER | Time: 204.292507172 
+	mzn_to_sol - 1. SATISFIABLE | t = 9
+mzn_TO_SOL | Time: 0.00794291496277 
+______________________________________________
+TOTAL TIME: 545.04974699 

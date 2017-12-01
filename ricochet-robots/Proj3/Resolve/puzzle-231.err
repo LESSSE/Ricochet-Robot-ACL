@@ -1,61 +1,61 @@
-RR_TO_mzn | Time: 0.642867088318 
+RR_TO_mzn | Time: 0.760035037994 
 
   WARNING: model inconsistency detected
   problem-0.mzn:20:
   in binary '=' operator expression
-MZN_SOLVER | Time: 0.49192404747 
+MZN_SOLVER | Time: 0.484745025635 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 0
-mzn_TO_SOL | Time: 0.00121212005615 
+mzn_TO_SOL | Time: 0.00141286849976 
 ______________________________________________
-RR_TO_mzn | Time: 0.691933870316 
+RR_TO_mzn | Time: 0.781666994095 
 
   WARNING: model inconsistency detected
-  problem-1.mzn:4280:
+  problem-1.mzn:4172:
   in call 'forall'
   in array comprehension expression
     with k = 0
     with t = 0
   in binary '->' operator expression
-MZN_SOLVER | Time: 1.5141479969 
+MZN_SOLVER | Time: 1.29619789124 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 1
-mzn_TO_SOL | Time: 0.00141000747681 
+mzn_TO_SOL | Time: 0.00220990180969 
 ______________________________________________
-RR_TO_mzn | Time: 0.676307916641 
-MZN_SOLVER | Time: 4.15947294235 
+RR_TO_mzn | Time: 0.811447143555 
+MZN_SOLVER | Time: 4.11984705925 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 2
-mzn_TO_SOL | Time: 0.00123310089111 
+mzn_TO_SOL | Time: 0.00169610977173 
 ______________________________________________
-RR_TO_mzn | Time: 0.649620771408 
-MZN_SOLVER | Time: 10.5299839973 
+RR_TO_mzn | Time: 0.629276990891 
+MZN_SOLVER | Time: 10.9649019241 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 4
-mzn_TO_SOL | Time: 0.00141096115112 
+mzn_TO_SOL | Time: 0.00134015083313 
 ______________________________________________
-RR_TO_mzn | Time: 0.663784980774 
-MZN_SOLVER | Time: 15.0977418423 
+RR_TO_mzn | Time: 0.644894123077 
+MZN_SOLVER | Time: 15.0547878742 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 5
-mzn_TO_SOL | Time: 0.00186896324158 
+mzn_TO_SOL | Time: 0.00154805183411 
 ______________________________________________
-RR_TO_mzn | Time: 0.666989088058 
-MZN_SOLVER | Time: 20.2948250771 
+RR_TO_mzn | Time: 0.911669015884 
+MZN_SOLVER | Time: 19.6747560501 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 6
-mzn_TO_SOL | Time: 0.000998973846436 
+mzn_TO_SOL | Time: 0.00188493728638 
 ______________________________________________
-RR_TO_mzn | Time: 0.740469932556 
-MZN_SOLVER | Time: 29.0024738312 
+RR_TO_mzn | Time: 0.703052997589 
+MZN_SOLVER | Time: 37.4701120853 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 7
-mzn_TO_SOL | Time: 0.0018789768219 
+mzn_TO_SOL | Time: 0.00157403945923 
 ______________________________________________
-RR_TO_mzn | Time: 0.782903909683 
-MZN_SOLVER | Time: 192.858520985 
+RR_TO_mzn | Time: 0.701846837997 
+MZN_SOLVER | Time: 165.466322184 
 	mzn_to_sol - 1. UNSATISFIABLE | t = 8
-mzn_TO_SOL | Time: 0.00171089172363 
+mzn_TO_SOL | Time: 0.00178408622742 
 ______________________________________________
-RR_TO_mzn | Time: 0.657495975494 
+RR_TO_mzn | Time: 0.715533971786 
 terminate called after throwing an instance of 'std::bad_alloc'
   what():  std::bad_alloc
 Aborted (core dumped)
-MZN_SOLVER | Time: 194.814167023 
+MZN_SOLVER | Time: 189.521332979 
 	mzn_to_sol - 1. SATISFIABLE | t = 9
-mzn_TO_SOL | Time: 0.00196981430054 
+mzn_TO_SOL | Time: 0.00155305862427 
 ______________________________________________
-TOTAL TIME: 474.972454071 
+TOTAL TIME: 450.747278929 

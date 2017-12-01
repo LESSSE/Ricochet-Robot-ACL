@@ -1,7 +1,56 @@
-RR_TO_mzn | Time: 0.619293928146 
-sh: 1: ./Minizinc/mzn-g12fd: Permission denied
-MZN_SOLVER | Time: 0.00780487060547 
-	mzn_to_sol - 1. SATISFIABLE | t = 0
-mzn_TO_SOL | Time: 0.00132083892822 
+RR_TO_mzn | Time: 0.668102025986 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.481837034225 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00265407562256 
 ______________________________________________
-TOTAL TIME: 0.632723093033 
+RR_TO_mzn | Time: 0.691848039627 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4127:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.12682914734 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00149011611938 
+______________________________________________
+RR_TO_mzn | Time: 0.686249017715 
+MZN_SOLVER | Time: 4.29703712463 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00135207176208 
+______________________________________________
+RR_TO_mzn | Time: 0.682572841644 
+MZN_SOLVER | Time: 10.8410890102 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00138711929321 
+______________________________________________
+RR_TO_mzn | Time: 0.677094936371 
+MZN_SOLVER | Time: 15.2204349041 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00213003158569 
+______________________________________________
+RR_TO_mzn | Time: 0.714458942413 
+MZN_SOLVER | Time: 20.4114561081 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00195980072021 
+______________________________________________
+RR_TO_mzn | Time: 0.74595785141 
+MZN_SOLVER | Time: 38.1130461693 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.00200414657593 
+______________________________________________
+RR_TO_mzn | Time: 0.669310092926 
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+Aborted (core dumped)
+MZN_SOLVER | Time: 260.896018982 
+	mzn_to_sol - 1. SATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00166988372803 
+______________________________________________
+TOTAL TIME: 356.944867849 

@@ -1,0 +1,58 @@
+RR_TO_mzn | Time: 0.674422979355 
+
+  WARNING: model inconsistency detected
+  problem-0.mzn:20:
+  in binary '=' operator expression
+MZN_SOLVER | Time: 0.417819023132 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 0
+mzn_TO_SOL | Time: 0.00172305107117 
+______________________________________________
+RR_TO_mzn | Time: 0.704434871674 
+
+  WARNING: model inconsistency detected
+  problem-1.mzn:4237:
+  in call 'forall'
+  in array comprehension expression
+    with k = 0
+    with t = 0
+  in binary '->' operator expression
+MZN_SOLVER | Time: 1.30786395073 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 1
+mzn_TO_SOL | Time: 0.00143098831177 
+______________________________________________
+RR_TO_mzn | Time: 0.668635845184 
+MZN_SOLVER | Time: 3.93108510971 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 2
+mzn_TO_SOL | Time: 0.00185489654541 
+______________________________________________
+RR_TO_mzn | Time: 0.639089822769 
+MZN_SOLVER | Time: 9.98170900345 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 4
+mzn_TO_SOL | Time: 0.00207710266113 
+______________________________________________
+RR_TO_mzn | Time: 0.68608212471 
+MZN_SOLVER | Time: 14.6863667965 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 5
+mzn_TO_SOL | Time: 0.00196599960327 
+______________________________________________
+RR_TO_mzn | Time: 0.70107793808 
+MZN_SOLVER | Time: 18.6121990681 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 6
+mzn_TO_SOL | Time: 0.00118494033813 
+______________________________________________
+RR_TO_mzn | Time: 0.720926046371 
+MZN_SOLVER | Time: 22.7213728428 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 7
+mzn_TO_SOL | Time: 0.0010838508606 
+______________________________________________
+RR_TO_mzn | Time: 0.691142082214 
+MZN_SOLVER | Time: 40.8859910965 
+	mzn_to_sol - 1. UNSATISFIABLE | t = 8
+mzn_TO_SOL | Time: 0.00182104110718 
+______________________________________________
+RR_TO_mzn | Time: 0.655475139618 
+MZN_SOLVER | Time: 178.774877071 
+	mzn_to_sol - 1. SATISFIABLE | t = 9
+mzn_TO_SOL | Time: 0.00147294998169 
+______________________________________________
+TOTAL TIME: 297.485033989 
